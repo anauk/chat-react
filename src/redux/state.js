@@ -46,7 +46,7 @@ let newText = {
 export const updateNewPostText = (newText) => {
   state.profilePage.newPostText = newText;
   rerenderEntireTree(state);
-}
+};
 export const addMessage = () => {
   let newText = {
     id: 10,
