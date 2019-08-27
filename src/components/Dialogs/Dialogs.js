@@ -7,15 +7,19 @@ import Message from "./Message/Message";
 
 const Dialogs = (props) => {
 
-
-
-  let renderDialogs = props.state.dialogs.map(dialog => {
+  let renderDialogs = props.dialogsPage.dialogs.map(dialog => {
     return <Dialog id={dialog.id} name={dialog.name}/>
   })
-  let renderMessages = props.state.messages.map(message =>{
+  let renderMessages = props.dialogsPage.messages.map(message =>{
     return <Message singleMessage={message.singleMessage}/>
   })
-
+let addNewMessage = () => {
+    props.addMessage()
+}
+let updteMessage = (e) => {
+    e.preventDefault()
+    props.updateNewMessage()
+}
 
   return (
     <div className={s.dialogs}>
@@ -28,11 +32,12 @@ const Dialogs = (props) => {
           <div>
             <textarea
             placeholder='send message'
-            // value={newMessageBody}
+            value={props.dialogsPage.newMessageBody}
+            onChange={updteMessage}
             >
             </textarea>
           </div>
-          <div><button >Add</button></div>
+          <div><button onClick={addNewMessage}>Add</button></div>
         </div>
       </div>
     </div>

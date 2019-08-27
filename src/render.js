@@ -2,15 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
-import {addPost} from './redux/state'
+import {addMessage, addPost, updateNewPostText, updateNewMessage} from "./redux/state";
+import {BrowserRouter} from "react-router-dom";
 // addPost("Hello, i am function addPost")
 
-export let renderTree = (state) => {
-  ReactDOM.render(<App state={state}
-                       addPost={addPost}
-  />, document.getElementById('root'));
-}
-serviceWorker.unregister();
+export let rerenderEntireTree = (state) => {
+  ReactDOM.render(
+    <BrowserRouter>
+      <App state={state}
+           addPost={addPost}
+           updateNewPostText={updateNewPostText}
+           addMessage={addMessage}
+           updateNewMessag={updateNewMessage}/>
+    </BrowserRouter>, document.getElementById('root'));
+};
 
-export default renderTree
