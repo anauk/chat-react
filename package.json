@@ -32,6 +32,6 @@
     ]
   },
   "devDependencies": {
-    "react-redux": "^7.1.0"
+    "react-redux": "^7.1.1"
   }
 }

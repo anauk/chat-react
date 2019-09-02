@@ -1,5 +1,7 @@
 import React from 'react'
 import s from './AddPost.module.css'
+// import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../redux/storeDispatch";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../redux/profile-reducer";
 
 const AddPost = (props) => {
 
@@ -10,7 +12,7 @@ const AddPost = (props) => {
   }
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    props.updateNewPostText(text)
+    props.updatenewPostText(text)
   }
   return (
     <div className={s.wrapper}>
