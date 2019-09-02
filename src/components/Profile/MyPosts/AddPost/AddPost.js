@@ -2,9 +2,12 @@ import React from 'react'
 import s from './AddPost.module.css'
 // import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../redux/storeDispatch";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../redux/profile-reducer";
+import Post from "../Post/Post";
 
 const AddPost = (props) => {
-
+  let renderPosts = props.posts.map((post) => {
+    return <Post message={post.message} like={post.like} count={post.count}/>
+  })
   let newPostElement = React.createRef();
 
   let addPost = () => {
@@ -24,6 +27,7 @@ const AddPost = (props) => {
         onChange={onPostChange}/>
       </div>
       <button onClick={addPost}>ADD</button>
+      <div>{ renderPosts }</div>
     </div>
   )
 }

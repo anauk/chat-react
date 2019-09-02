@@ -8,5 +8,5 @@ const reducers = combineReducers({
 });
 
 const store = createStore(reducers);
-
+window.stare = store;
 export default store;
