@@ -20,3 +20,6 @@
     padding: 5px;
     text-transform: uppercase;
 }
+.selectedPage {
+font-weight: bold;
+}

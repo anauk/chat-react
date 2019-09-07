@@ -1,11 +1,13 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+
 
 let initialState = {
   users: [],
   pageSize: 5,
-  totalUsersCount: 0,
+  count: 18,
   currentPage: 1
 
 }
