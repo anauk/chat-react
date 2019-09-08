@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da308f7d-abd8-4be2-87b9-b585e18de3ae" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Users/UserAsClass.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/UserAsClass.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Users/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/Users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Users/UserAsClass.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Users/UsersContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/UsersContainer.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +91,7 @@
       <workItem from="1567666489972" duration="562000" />
       <workItem from="1567670596572" duration="465000" />
       <workItem from="1567671694866" duration="17000" />
-      <workItem from="1567866503907" duration="11395000" />
+      <workItem from="1567866503907" duration="11689000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
