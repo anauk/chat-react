@@ -6,7 +6,7 @@ import AddPostContainer from "./MyPosts/AddPost/AddPostContainer";
 const Profile = (props) => {
   return (
     <div>
-      <ProfileInfo />
+      <ProfileInfo profile={props.profile}/>
         <AddPostContainer
           store={props.store}
           // posts={props.profilePage.posts}

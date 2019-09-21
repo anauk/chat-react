@@ -1,6 +1,8 @@
 import React from 'react'
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/user.png'
+import { NavLink } from 'react-router-dom'
+import * as axios from "axios";
 
 let Users = (props) => {
   let pagesCount = Math.ceil(props.count / props.pageSize)
@@ -12,6 +14,7 @@ let Users = (props) => {
     <div className={s.wrapper}>
       <div>
         { pages.map(page => {
+          debugger
           return (
             <span
               onClick={(e) => { props.onPageChanged(page) }}
@@ -22,22 +25,43 @@ let Users = (props) => {
       {
         props.users.map(user => {
           console.log(user.id);
-          let follow = () => {
-            props.follow(user.id)
-          };
-          let unfollow = () => {
-            props.unfollow(user.id)
-          }
+          // let follow = () => {
+          //
+          // };
+          // let unfollow = () => {
+          //
+          // }
           return (
             <div className={s.userWrapper} key={Math.random()}>
       <span>
         <div>
+          <NavLink to={"/profile/"+"2"}>
         <img className={s.userPhoto} src={user.url !== null ? userPhoto : user.url}/>
+          </NavLink>
         </div>
         <div>
           {user.followed
-            ? <button className={s.buttonWrapper} onClick={unfollow}>Unfollow</button>
-            : <button className={s.buttonWrapper} onClick={follow}>Follow</button>}
+            ? <button className={s.buttonWrapper} onClick={
+              axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {},{
+                withCredentials: true
+              })
+                .then(response => {
+                  if(response.data.resultCode === 0){
+                    props.follow(user.id)
+                  }
+                })
+            }>Unfollow</button>
+            : <button className={s.buttonWrapper} onClick={
+              axios.delete(`https://social-network.samuraijs.com/api/1.0/unfollow/${user.id}`, {
+                withCredentials: true,
+                // headers:
+              })
+                .then(response => {
+                  if(response.data.resultCode === 0){
+                    props.unfollow(user.id)
+                  }
+                })
+            }>Follow</button>}
         </div>
       </span>
               <span>

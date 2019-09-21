@@ -1,20 +1,35 @@
 import React from 'react'
 import {connect} from "react-redux";
 import Users from "./Users";
-import {followAC, unfollowAC, setUsersAC, setCurrentPageAC, setUsersCountAC} from "../../redux/users-reducer";
+import {
+  followAC,
+  unfollowAC,
+  setUsersAC,
+  setCurrentPageAC,
+  setUsersCountAC,
+  toggleIsFetchingAC
+} from "../../redux/users-reducer";
+
 import * as axios from "axios";
+import Preloader from "../Settings/Preloader";
 
 class UserAsClass extends React.Component {
   componentDidMount() {
-    axios.get(`https://swapi.co/api/people?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+      withCredentials: true
+    })
       .then(response => {
-        this.props.setUsers(response.data.results)
-        this.props.setCount(response.data.count)
+        this.props.setFetching(false)
+        this.props.setUsers(response.data.items)
+        this.props.setCount(response.data.totalCount)
       })
   }
   onPageChanged = (pageNumber) => {
     this.props.setCurrentPage(pageNumber)
-    axios.get(`https://swapi.co/api/people?page=${pageNumber}&count=${this.props.pageSize}`)
+    this.props.setFetching(true)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
+      withCredentials: true
+    })
       .then(response => {
         this.props.setUsers(response.data.results)
       })
@@ -22,6 +37,8 @@ class UserAsClass extends React.Component {
 
   render() {
     return (
+      <>
+        { this.props.isFetching ? <Preloader /> : null}
       <Users
         count={this.props.count}
         pageSize={this.props.pageSize}
@@ -31,6 +48,7 @@ class UserAsClass extends React.Component {
         follow={this.props.follow}
         unfollow={this.props.unfollow}
       />
+      </>
     )
   }
 };
@@ -40,7 +58,8 @@ const mapStateToProps = (state) => {
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
     count: state.usersPage.count,
-    currentPage: state.usersPage.currentPage
+    currentPage: state.usersPage.currentPage,
+    isFetching: state.usersPage.isFetching
   }
 };
 const mapDispatchToProps = (dispatch) => {
@@ -59,6 +78,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setCount: (count) => {
       dispatch(setUsersCountAC(count))
+    },
+    setFetching: (isFetching) => {
+      dispatch(toggleIsFetchingAC(isFetching))
     }
   }
 };
