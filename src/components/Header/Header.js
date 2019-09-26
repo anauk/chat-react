@@ -3,6 +3,7 @@ import logo from "../../assets/images/user.png";
 import s from './Header.module.css'
 import {NavLink} from "react-router-dom";
 const Header = (props) => {
+  debugger
   return (
     <header className={s.header}>
       <img src={logo} alt=""/>
