@@ -1,5 +1,4 @@
 const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
-const UPDATE_NEW_MESSAGE = 'UPDATE_NEW_MESSAGE';
 
 const initialState = {
   dialogs: [
@@ -18,21 +17,14 @@ const initialState = {
     {id: 5, message: 'GiftChat'},
     {id: 6, message: 'Ok'},
     {id: 3, message: 'Your'},
-  ],
-  newMessageBody:''
+  ]
 }
 const dialogReducer = (state=initialState, action) => {
   switch (action.type) {
-    case UPDATE_NEW_MESSAGE:
-      return {
-        ...state,
-        newMessageBody: action.body
-      };
     case ADD_NEW_MESSAGE:
-      let body = state.newMessageBody;
+      let body = action.newMessageBody;
       return {
         ...state,
-        newMessageBody: '',
         messages: [...state.messages, {id: 7, message: body}]
       }
       // stateCopy.messages.push({id: 7, message: body});
@@ -40,12 +32,6 @@ const dialogReducer = (state=initialState, action) => {
   }
 }
 
-export const addMessageActionCreator = () => {
-  return {type: ADD_NEW_MESSAGE}
-}
-export const updateNewMessageTextActionCreator = (body) => {
-  return {type: UPDATE_NEW_MESSAGE, body: body}
-}
-
+export const addMessageActionCreator = (newMessageBody) => ({type: ADD_NEW_MESSAGE, newMessageBody})
 
 export default dialogReducer

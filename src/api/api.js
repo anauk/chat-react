@@ -27,3 +27,16 @@ export const authApi = () => {
       return response.data
     })
 }
+
+export const getStatus = (id) => {
+  return axios.get(baseUrl+`profile/status/${id}/`)
+    .then(response => {
+      return response.data
+    })
+}
+export const upDateStatus = (status) => {
+  return axios.put(baseUrl+`profile/status`, {status: status})
+    .then(response => {
+      return response.data
+    })
+}

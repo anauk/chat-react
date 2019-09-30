@@ -2,7 +2,7 @@ import React from 'react'
 import Profile from "./Profile";
 import * as axios from "axios";
 import {connect} from "react-redux";
-import { getUserProfile } from "../../redux/profile-reducer";
+import { getUserProfile, getUserStatus } from "../../redux/profile-reducer";
 import { withRouter } from "react-router-dom"
 
 class ProfileContainer extends React.Component{
@@ -12,20 +12,25 @@ class ProfileContainer extends React.Component{
       id = 2
     }
     this.props.getUserProfile(id)
+    this.props.getUserStatus(id)
   }
 
   render () {
     return (
       <Profile
         {...this.props}
-      profile={this.props.profile}/>
+      profile={this.props.profile}
+      status = {this.props.status}
+        updateStatus = {this.props.updateStatus}
+      />
     )
   }
 
 }
 const mapStateToProps = (state) =>({
-profile: state.profilePage.profile
+profile: state.profilePage.profile,
+  status: state.profilePage.status
 });
 let WithPouterComponent = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, { getUserProfile })(WithPouterComponent)
+export default connect(mapStateToProps, { getUserProfile, getUserStatus })(WithPouterComponent)
