@@ -89,4 +89,5 @@ export const getUsersThunk = (currentPage, pageSize) => {
   }
 }
 
+
 export default usersReducer

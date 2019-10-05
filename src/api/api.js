@@ -20,14 +20,19 @@ export const getProfile = (id) => {
 }
 
 export const authApi = () => {
-  return axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-    withCredentials: true
-  })
+  return axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`)
     .then(response => {
       return response.data
     })
 }
-
+export const login = (email, password, rememberMe=false) =>{
+  return axios.post(`https://social-network.samuraijs.com/api/1.0/auth/login`, {
+    email, password, rememberMe
+  })
+}
+export const logout = () =>{
+  return axios.delete(`https://social-network.samuraijs.com/api/1.0/auth/login`)
+}
 export const getStatus = (id) => {
   return axios.get(baseUrl+`profile/status/${id}/`)
     .then(response => {

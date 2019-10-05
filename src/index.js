@@ -13,8 +13,6 @@ import { Provider } from "react-redux";
 //
 // let rerenderEntireTree = () => {
   ReactDOM.render(
-    <BrowserRouter>
-      <Provider store={store}>
       <App
         // state={state}
         //    dispatch={store.dispatch.bind(store)}
@@ -24,9 +22,8 @@ import { Provider } from "react-redux";
            // updateNewPostText={store.updateNewPostText.bind(store)}
            // addMessage={store.addMessage.bind(store)}
            // updateNewMessage={store.updateNewMessage.bind(store)}
-      />
-      </Provider>
-    </BrowserRouter>, document.getElementById('root'))
+      />, document.getElementById('root')
+      )
 // }
 // rerenderEntireTree();
 //
